@@ -17,13 +17,14 @@
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background-color: #191816;
+}
+
+@media (min-width: 768px) {
+  .login-form-card-bg{
+    background-color: #24221F;
+    border-radius: 10px;
+  }
 }
 
 @layer utilities {
