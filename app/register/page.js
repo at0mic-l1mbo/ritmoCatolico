@@ -163,16 +163,16 @@ export default function Register() {
                             </p>
                         </div>
 
-                        <form method="POST" action="/api/register" className="mt-8 grid grid-cols-6 gap-6" onSubmit={handleSubmit}>
+                        <form method="POST" action="/api/register" className="mt-8 grid grid-cols-6 gap-6 login-form-card-bg md:px-6 md:py-6" onSubmit={handleSubmit}>
                             <div className="col-span-6 sm:col-span-3">
                                 <LabelField
-                                    htmlFor="firstName"
-                                    id="firstName"
+                                    htmlFor="firstNameInput"
+                                    id="firstNameLabel"
                                     text="Primeiro nome"
                                 />
                                 <InputField
                                     type="text"
-                                    id="firstName"
+                                    id="firstNameInput"
                                     placeholder="Digite aqui o seu primeiro nome."
                                     value={formData.firstName}
                                     onChange={handleChange}
@@ -182,13 +182,13 @@ export default function Register() {
 
                             <div className="col-span-6 sm:col-span-3">
                                 <LabelField
-                                    htmlFor="lastName"
-                                    id="lastName"
+                                    htmlFor="lastNameInput"
+                                    id="lastNameLabel"
                                     text="Último nome"
                                 />
                                 <InputField
                                     type="text"
-                                    id="lastName"
+                                    id="lastNameInput"
                                     placeholder="Digite aqui o seu último nome."
                                     value={formData.lastName}
                                     onChange={handleChange}
@@ -198,13 +198,13 @@ export default function Register() {
 
                             <div className="col-span-6">
                                 <LabelField
-                                    htmlFor="email"
-                                    id="email"
+                                    htmlFor="emailInput"
+                                    id="emailLabel"
                                     text="E-mail"
                                 />
                                 <InputField
                                     type="text"
-                                    id="email"
+                                    id="emailInput"
                                     placeholder="Digite aqui o seu email."
                                     value={formData.email}
                                     onChange={handleChange}
@@ -214,13 +214,13 @@ export default function Register() {
 
                             <div className="col-span-6 sm:col-span-3">
                                 <LabelField
-                                    htmlFor="password"
-                                    id="password"
+                                    htmlFor="passwordInput"
+                                    id="passwordLabel"
                                     text="Senha"
                                 />
                                 <InputField
                                     type="password"
-                                    id="password"
+                                    id="passwordInput"
                                     placeholder="Digite aqui a sua senha."
                                     value={formData.password}
                                     onChange={handleChange}
@@ -230,13 +230,13 @@ export default function Register() {
 
                             <div className="col-span-6 sm:col-span-3">
                                 <LabelField
-                                    htmlFor="passwordConfirmation"
-                                    id="passwordConfirmation"
+                                    htmlFor="passwordConfirmationInput"
+                                    id="passwordConfirmationLabel"
                                     text="Confirme a sua senha"
                                 />
                                 <InputField
                                     type="password"
-                                    id="passwordConfirmation"
+                                    id="passwordConfirmationInput"
                                     placeholder="Digite aqui a mesma senha."
                                     value={formData.passwordConfirmation}
                                     onChange={handleChange}

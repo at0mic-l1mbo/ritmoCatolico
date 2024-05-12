@@ -79,14 +79,14 @@ export default function Home() {
           <p className="text-center text-lg font-medium text-zinc-400">Faça o seu login</p>
           <div>
             <LabelField
-              htmlFor="email"
-              id="email"
+              htmlFor="emailInput"
+              id="emailLabel"
               text="E-mail"
             />
             <div className="relative">
               <InputField
                 type="email"
-                id="email"
+                id="emailInput"
                 placeholder="Digite aqui o seu e-mail."
                 value={email}
                 onChange={handleEmailChange}
@@ -100,14 +100,14 @@ export default function Home() {
 
           <div>
             <LabelField
-              htmlFor="password"
-              id="password"
+              htmlFor="passwordInput"
+              id="passwordLabel"
               text="Senha"
             />
             <div className="relative">
               <InputField
                 type={showPassword ? "text" : "password"}
-                id="password"
+                id="passwordInput"
                 placeholder="Digite a senha."
                 value={password}
                 onChange={handlePasswordChange}
