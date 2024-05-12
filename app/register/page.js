@@ -40,7 +40,8 @@ export default function Register() {
         }));
     };
 
-    const handleSubmit = (e) => {
+    
+    const handleSubmit = async (e) => {
         e.preventDefault();
         let isValid = true;
         const newErrors = { ...errors };
@@ -93,21 +94,40 @@ export default function Register() {
         }
 
         if (isValid) {
-            toast.success("Dados enviados com sucesso!")
-            setErrors({
-                firstName: "",
-                lastName: "",
-                email: "",
-                password: "",
-                passwordConfirmation: ""
-            })
-            setFormData({
-                firstName: "",
-                lastName: "",
-                email: "",
-                password: "",
-                passwordConfirmation: ""
-            })
+            try {
+                const response = await fetch("/api/register", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(formData),
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    toast.success("Dados enviados com sucesso!");
+                    setErrors({
+                        firstName: "",
+                        lastName: "",
+                        email: "",
+                        password: "",
+                        passwordConfirmation: ""
+                    });
+                    setFormData({
+                        firstName: "",
+                        lastName: "",
+                        email: "",
+                        password: "",
+                        passwordConfirmation: ""
+                    });
+                } else {
+                    const errorData = await response.json();
+                    toast.error("Erro ao enviar os dados: " + errorData.message);
+                }
+            } catch (error) {
+                console.error("Erro ao enviar os dados:", error);
+                toast.error("Erro ao enviar os dados. Por favor, tente novamente mais tarde.");
+            }
         } else {
             setErrors(newErrors);
             toast.error("Corrija os erros no formulário.");
@@ -172,7 +192,7 @@ export default function Register() {
                                 />
                                 <InputField
                                     type="text"
-                                    id="firstNameInput"
+                                    id="firstName"
                                     placeholder="Digite aqui o seu primeiro nome."
                                     value={formData.firstName}
                                     onChange={handleChange}
@@ -188,7 +208,7 @@ export default function Register() {
                                 />
                                 <InputField
                                     type="text"
-                                    id="lastNameInput"
+                                    id="lastName"
                                     placeholder="Digite aqui o seu último nome."
                                     value={formData.lastName}
                                     onChange={handleChange}
@@ -204,7 +224,7 @@ export default function Register() {
                                 />
                                 <InputField
                                     type="text"
-                                    id="emailInput"
+                                    id="email"
                                     placeholder="Digite aqui o seu email."
                                     value={formData.email}
                                     onChange={handleChange}
@@ -220,7 +240,7 @@ export default function Register() {
                                 />
                                 <InputField
                                     type="password"
-                                    id="passwordInput"
+                                    id="password"
                                     placeholder="Digite aqui a sua senha."
                                     value={formData.password}
                                     onChange={handleChange}
@@ -236,7 +256,7 @@ export default function Register() {
                                 />
                                 <InputField
                                     type="password"
-                                    id="passwordConfirmationInput"
+                                    id="passwordConfirmation"
                                     placeholder="Digite aqui a mesma senha."
                                     value={formData.passwordConfirmation}
                                     onChange={handleChange}

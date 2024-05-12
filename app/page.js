@@ -36,34 +36,56 @@ export default function Home() {
     setShowPassword((prevState) => !prevState);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-
+  
     const newErrors = { email: "", password: "" };
-
+  
     if (!email.trim()) {
       newErrors.email = "Digite o e-mail.";
     } else if (!/\S+@\S+\.\S+/.test(email)) {
       newErrors.email = "E-mail inválido.";
     }
-
+  
     if (!password.trim()) {
       newErrors.password = "A senha é obrigatória!";
     } else if (password.length < 6) {
       newErrors.password = "A senha deve ter pelo menos 6 caracteres!";
     }
-
+  
     setErrors(newErrors);
-
+  
+    // Verificar se não há erros de validação
     if (!Object.values(newErrors).some((error) => error)) {
-      toast.success("Dados enviados com sucesso!")
-      console.log(`Usuário enviou: ${email} ${password}`);
-      setEmail("");
-      setPassword("");
+      try {
+        const response = await fetch('/api/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email, password }),
+        });
+  
+        // Verificar se a resposta está OK
+        if (response.ok) {
+          toast.success("Login realizado com sucesso!");
+          setEmail("");
+          setPassword("");
+        } else {
+          // Se houver um erro de login, mostrar mensagem de erro
+          const data = await response.json();
+          throw new Error(data.message || 'Erro ao fazer login.');
+        }
+      } catch (error) {
+        // Exibir mensagem de erro se houver um erro de conexão
+        toast.error(error.message || 'Erro ao fazer login.');
+      }
     } else {
+      // Se houver erros de validação, exibir mensagem de erro
       toast.error("Corrija os erros no formulário.");
     }
   };
+  
 
   return (
     <section className="relative flex flex-wrap lg:h-screen lg:items-center">
@@ -75,7 +97,7 @@ export default function Home() {
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="mx-auto mb-0 mt-8 max-w-md space-y-4 rounded-lg p-4 md:shadow-lg lg:p-8 login-form-card-bg">
+        <form method="POST" action="/api/login" onSubmit={handleSubmit} className="mx-auto mb-0 mt-8 max-w-md space-y-4 rounded-lg p-4 md:shadow-lg lg:p-8 login-form-card-bg">
           <p className="text-center text-lg font-medium text-zinc-400">Faça o seu login</p>
           <div>
             <LabelField

@@ -1,0 +1,5 @@
+-- AlterTable
+ALTER TABLE `User` MODIFY `firstName` VARCHAR(255) NOT NULL,
+    MODIFY `lastName` VARCHAR(255) NOT NULL,
+    MODIFY `email` VARCHAR(255) NOT NULL,
+    MODIFY `password` VARCHAR(255) NOT NULL;
