@@ -1,9 +1,8 @@
-import { PrismaClient } from '@prisma/client'
+import prisma from "../../lib/prisma"
 import { NextResponse } from 'next/server'
 const bcrypt = require('bcrypt');
 
 export async function GET(req) {
-    const prisma = new PrismaClient()
     try {
         const users = await prisma.user.findMany();
         return NextResponse.json({ message: 'OK', users })
@@ -13,7 +12,6 @@ export async function GET(req) {
 }
 
 export async function POST(req) {
-    const prisma = new PrismaClient();
     try {
         const { email, password } = await req.json();
         const user = await prisma.user.findUnique({

@@ -1,9 +1,8 @@
-import { PrismaClient } from '@prisma/client'
 import { NextResponse } from 'next/server'
+import prisma from "../../lib/prisma"
 const bcrypt = require('bcrypt');
 
 export async function POST(req){
-    const prisma = new PrismaClient()
     try{
         const {firstName, lastName, email, password} = await req.json()
         const existingUserByEmail = await prisma.user.findUnique({
