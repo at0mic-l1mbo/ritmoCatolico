@@ -1,11 +1,11 @@
 "use client"
 import { useState, useEffect } from "react";
-import LabelField from "../components/atoms/labels";
-import InputField from "../components/atoms/inputs";
+import LabelField from "../../components/atoms/labels";
+import InputField from "../../components/atoms/inputs";
 import toast, { Toaster } from 'react-hot-toast';
-import ButtonForm from "../components/atoms/buttons";
-import RedirectsOtherPages from "../components/atoms/redirects";
-import RitmoCatolicoLogo from "../components/atoms/logo";
+import ButtonForm from "../../components/atoms/buttons";
+import RedirectsOtherPages from "../../components/atoms/redirects";
+import RitmoCatolicoLogo from "../../components/atoms/logo";
 
 export default function Register() {
     const [isMounted, setIsMounted] = useState(false);
