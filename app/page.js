@@ -1,11 +1,11 @@
 "use client"
 import { useState, useEffect } from "react";
-import InputField from "../components/atoms/inputs";
-import LabelField from "../components/atoms/labels";
-import ButtonForm from "../components/atoms/buttons";
+import InputField from "./components/atoms/inputs";
+import LabelField from "./components/atoms/labels";
+import ButtonForm from "./components/atoms/buttons";
 import toast, { Toaster } from 'react-hot-toast';
 import { Eye, EyeOff, AtSign } from 'lucide-react';
-import RedirectsOtherPages from "../components/atoms/redirects";
+import RedirectsOtherPages from "./components/atoms/redirects";
 
 export default function Home() {
   const [email, setEmail] = useState("");
