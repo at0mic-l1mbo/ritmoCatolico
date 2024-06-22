@@ -71,7 +71,11 @@ export default function Home() {
           toast.success("Login realizado com sucesso!");
           setEmail("");
           setPassword("");
+<<<<<<< HEAD
           window.location.href = "file:///C:/Users/thiag/Desktop/Nova%20pasta%20(5)/Prototipagem/HTML/gerenciar.Musicas.html";
+=======
+          window.location.href = "http://127.0.0.1:5500/HTML/gerenciar.Musicas.html";
+>>>>>>> 81bf4c4 (hello)
         } else {
           // Se houver um erro de login, mostrar mensagem de erro
           const data = await response.json();
