@@ -71,6 +71,7 @@ export default function Home() {
           toast.success("Login realizado com sucesso!");
           setEmail("");
           setPassword("");
+          window.location.href = "https://www.google.com";
         } else {
           // Se houver um erro de login, mostrar mensagem de erro
           const data = await response.json();
